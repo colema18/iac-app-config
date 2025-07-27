@@ -1,0 +1,10 @@
+name: iac-app-config
+description: Pulumi project to manage AWS AppConfigs
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-typescript
