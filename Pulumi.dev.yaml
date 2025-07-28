@@ -1,1 +1,2 @@
-environment: iac-app-config/dev
+environment:
+  name: iac-app-config/dev
