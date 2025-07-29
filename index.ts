@@ -23,7 +23,7 @@ const profile = new aws.appconfig.ConfigurationProfile("hello-pulumi-profile", {
   locationUri: "hosted",
 });
 
-// ✅ Include message, logo, and bgColor in JSON
+// Include message, logo, and bgColor in JSON
 const configVersion = new aws.appconfig.HostedConfigurationVersion("hello-pulumi-config-version", {
   applicationId: app.id,
   configurationProfileId: profile.configurationProfileId,
