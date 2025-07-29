@@ -2,15 +2,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 
 const config = new pulumi.Config();
-
 const applicationName = config.require("applicationName");
 const message = config.require("message");
 const profileName = config.require("profileName");
-const environmentName = config.require("environmentName");
-
-// ✅ Get new values
 const logo = config.require("logo");
 const bgColor = config.require("bgColor");
+
+const environmentName = new pulumi.Config().require("environmentName");
 
 const app = new aws.appconfig.Application("hello-pulumi-app", { name: applicationName });
 
