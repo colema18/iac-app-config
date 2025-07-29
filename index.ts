@@ -12,21 +12,21 @@ const environmentName = config.require("environmentName");
 const logo = config.require("logo");
 const bgColor = config.require("bgColor");
 
-const app = new aws.appconfig.Application("my-app", { name: applicationName });
+const app = new aws.appconfig.Application("hello-pulumi-app", { name: applicationName });
 
-const env = new aws.appconfig.Environment("my-env", {
+const env = new aws.appconfig.Environment("hello-pulumi-env", {
   applicationId: app.id,
   name: environmentName,
 });
 
-const profile = new aws.appconfig.ConfigurationProfile("my-profile", {
+const profile = new aws.appconfig.ConfigurationProfile("hello-pulumi-profile", {
   applicationId: app.id,
   name: profileName,
   locationUri: "hosted",
 });
 
 // ✅ Include message, logo, and bgColor in JSON
-const configVersion = new aws.appconfig.HostedConfigurationVersion("my-config-version", {
+const configVersion = new aws.appconfig.HostedConfigurationVersion("hello-pulumi-config-version", {
   applicationId: app.id,
   configurationProfileId: profile.configurationProfileId,
   content: pulumi.interpolate`{
@@ -37,7 +37,7 @@ const configVersion = new aws.appconfig.HostedConfigurationVersion("my-config-ve
   contentType: "application/json",
 });
 
-new aws.appconfig.Deployment("my-deployment", {
+new aws.appconfig.Deployment("hello-pulumi-deployment", {
   applicationId: app.id,
   configurationProfileId: profile.configurationProfileId,
   configurationVersion: configVersion.versionNumber.apply((v) => v.toString()),
